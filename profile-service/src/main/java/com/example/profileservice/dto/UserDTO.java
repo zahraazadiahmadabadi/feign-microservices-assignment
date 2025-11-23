@@ -7,11 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ProfileResponseDTO {
-
+public class UserDTO {
     private Long id;
-    private Long userId;
-    private String bio;
-    private String location;
-    private Integer age;
+    private String name;
+    private String email;
 }
