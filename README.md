@@ -149,26 +149,59 @@ git clone https://github.com/zahraazadiahmadabadi/feign-microservices-assignment
 cd feign-microservices-assignment
 ```
 
-### 2. Build the Project
+### 2. Build the Project (Generate Executable JAR Files)
 
-Build all modules from the root directory:
-
+Before running Docker, build all modules from the root directory
 ```bash
-# Using Maven Wrapper (recommended)
-./mvnw clean install
-
-# Or using Maven directly
-mvn clean install
+mvn clean package -DskipTests
 ```
-
 This will:
 
 - Compile all modules
-- Run tests
-- Package JAR files
-- Install dependencies
+- Create executable Spring Boot JARs for both services
+  - user-service/target/user-service-0.0.1-SNAPSHOT.jar
 
-## Running the Services
+  - profile-service/target/profile-service-0.0.1-SNAPSHOT.jar
+
+### 3. Run the Services with Docker (Recommended)
+
+Prerequisites: Docker Desktop installed and running
+From the project root (where docker-compose.yml exists), run
+
+```bash
+docker compose build
+docker compose up
+```
+
+his will:
+
+- Build Docker images for
+  - user-service (port 8081)
+  - profile-service (port 8082)
+
+- Start both services in a shared Docker network
+
+- Pass USER_SERVICE_URL=http://user-service:8081 to profile-service
+  → enabling service-to-service communication inside Docker
+
+To run containers in the background:
+
+```bash
+docker compose up -d
+```
+
+To stop all containers:
+
+```bash
+docker compose down
+```
+
+After startup:
+
+- User Service → http://localhost:8081/swagger-ui.html
+- Profile Service → http://localhost:8082/swagger-ui.html
+
+## 4. (Optional) Run Services Locally Without Docker
 
 ### Option 1: Run Services Individually
 
