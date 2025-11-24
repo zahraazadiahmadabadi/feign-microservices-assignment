@@ -42,7 +42,7 @@ public class ProfileController {
         return profileService.create(request);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/with-user")
     @Operation(
             summary = "Get profile with user data",
             description = "Returns profile information combined with user data"

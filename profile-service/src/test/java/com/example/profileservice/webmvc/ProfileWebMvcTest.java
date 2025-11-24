@@ -203,7 +203,7 @@ class ProfileWebMvcTest {
 
         when(profileService.getUserProfile(profileId)).thenReturn(expected);
 
-        String json = mockMvc.perform(get("/profiles/{id}", profileId))
+        String json = mockMvc.perform(get("/profiles/{id}/with-user", profileId))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn()
@@ -226,7 +226,7 @@ class ProfileWebMvcTest {
         Long id = 999L;
         when(profileService.getUserProfile(id)).thenThrow(new ProfileNotFoundException(id));
 
-        String json = mockMvc.perform(get("/profiles/{id}", id))
+        String json = mockMvc.perform(get("/profiles/{id}/with-user", id))
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn()
@@ -250,7 +250,7 @@ class ProfileWebMvcTest {
         when(profileService.getUserProfile(profileId))
                 .thenThrow(new UserNotFoundException(userId));
 
-        String json = mockMvc.perform(get("/profiles/{id}", profileId))
+        String json = mockMvc.perform(get("/profiles/{id}/with-user", profileId))
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn()
