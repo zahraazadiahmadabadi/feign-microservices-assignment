@@ -1,0 +1,5 @@
+com\example\profileservice\common\RandomDataUtils.class
+com\example\profileservice\webmvc\ProfileWebMvcTest.class
+com\example\profileservice\service\ProfileServiceIntegrationTest.class
+com\example\profileservice\ProfileServiceApplicationTests.class
+com\example\profileservice\util\FakeEntities.class
